@@ -87,7 +87,11 @@ export default function Home() {
             </div>
         )
     }
-    const renderTableHead = () => {
+    
+    const renderTableBody = () => {
+        const startIndex = (pageNo - 1) * 10;
+        const endIndex = pageNo * 10;
+
         return (
             <table style={{ borderSpacing: 0, backgroundColor: "white", width: "100%", border: "1px solid black" }}>
                 <thead>
@@ -100,16 +104,6 @@ export default function Home() {
                         <td width="20%" colspan="2">Action</td>
                     </tr>
                 </thead>
-            </table>
-        )
-    }
-    const renderTableBody = () => {
-        const startIndex = (pageNo - 1) * 10;
-        const endIndex = pageNo * 10;
-
-        return (
-            <table style={{ borderSpacing: 0, backgroundColor: "white", width: "100%", border: "1px solid black" }}>
-
                 <tbody>
                     {filteredData.slice(startIndex, endIndex).map((item) => {
                         const isEditing = editingRow === item.id;
@@ -128,7 +122,7 @@ export default function Home() {
                                 <td width="20%">{isEditing ? <input type="text" value={editedData.name} onChange={(e) => handleInputChange(e, 'name')} /> : item.name}</td>
                                 <td width="30%">{isEditing ? <input type="text" value={editedData.email} onChange={(e) => handleInputChange(e, 'email')} /> : item.email}</td>
                                 <td width="20%">{isEditing ? <input type="text" value={editedData.role} onChange={(e) => handleInputChange(e, 'role')} /> : item.role}</td>
-                                <td width="20">
+                                <td width="20%">
                                     {isEditing ? (
                                         <>
                                             <button onClick={handleSaveClick}>Save</button>
@@ -160,7 +154,7 @@ export default function Home() {
     }
     const renderSearchBar = () => {
         return (
-            <div style={{ marginLeft: "150px", marginBottom: "20px", marginTop: "10px" }}>
+            <div style={{ display:"flex",justifyContent:"center",textAlign: 'center', marginBottom: "20px", marginTop: "10px" }}>
                 <input
                     size="35"
                     type="text" placeholder="Search by name, email, or role"
@@ -174,7 +168,7 @@ export default function Home() {
         )
     }
     const renderDeleteAllSelected = () => {
-        const btnstyle = { float: "right" ,padding: "5px",marginTop: "5px"}
+        const btnstyle = { float: "right", padding: "5px", marginTop: "5px" }
         return (
 
             <button style={btnstyle}
@@ -188,7 +182,7 @@ export default function Home() {
     }
     const handleSelectAllClick = () => {
         const startIndex = (pageNo - 1) * 10;
-        const endIndex = pageNo  * 10;
+        const endIndex = pageNo * 10;
 
         const currentPageItems = data.slice(startIndex, endIndex);
         const currentPageItemIds = currentPageItems.map((item) => item.id);
@@ -214,10 +208,9 @@ export default function Home() {
         <div>
             {renderHeading()}
             {renderSearchBar()}
-            {renderTableHead()}
             {renderTableBody()}
             {renderPagination()}
-            {renderDeleteAllSelected()}            
+            {renderDeleteAllSelected()}
         </div>
     )
 }
