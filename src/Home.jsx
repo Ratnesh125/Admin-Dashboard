@@ -174,7 +174,7 @@ export default function Home() {
         )
     }
     const renderDeleteAllSelected = () => {
-        const btnstyle = { marginLeft: "1000px", marginTop: "10px" }
+        const btnstyle = { float: "right" ,padding: "5px",marginTop: "5px"}
         return (
 
             <button style={btnstyle}
