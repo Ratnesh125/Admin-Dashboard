@@ -87,7 +87,7 @@ export default function Home() {
             </div>
         )
     }
-
+    
     const renderTableBody = () => {
         const startIndex = (pageNo - 1) * 10;
         const endIndex = pageNo * 10;
@@ -122,16 +122,17 @@ export default function Home() {
                                 <td width="20%">{isEditing ? <input type="text" value={editedData.name} onChange={(e) => handleInputChange(e, 'name')} /> : item.name}</td>
                                 <td width="30%">{isEditing ? <input type="text" value={editedData.email} onChange={(e) => handleInputChange(e, 'email')} /> : item.email}</td>
                                 <td width="20%">{isEditing ? <input type="text" value={editedData.role} onChange={(e) => handleInputChange(e, 'role')} /> : item.role}</td>
-                                <td width="10%">
+                                <td width="20%">
                                     {isEditing ? (
-                                        <div>
+                                        <>
                                             <button onClick={handleSaveClick}>Save</button>
-                                        </div>
+                                        </>
                                     ) : (
                                         <button onClick={() => handleEditClick(item.id, item)}>Edit</button>
                                     )}
                                 </td>
-                                <td width="10%"><button  onClick={() => handleDeleteClick(item.id)}>Delete</button></td>
+                                <td><button onClick={() => handleDeleteClick(item.id)}>Delete</button></td>
+
                             </tr>
                         )
                     })}
@@ -153,7 +154,7 @@ export default function Home() {
     }
     const renderSearchBar = () => {
         return (
-            <div style={{ display: "flex", justifyContent: "center", textAlign: 'center', marginBottom: "20px", marginTop: "10px" }}>
+            <div style={{ display:"flex",justifyContent:"center",textAlign: 'center', marginBottom: "20px", marginTop: "10px" }}>
                 <input
                     size="35"
                     type="text" placeholder="Search by name, email, or role"
@@ -167,7 +168,7 @@ export default function Home() {
         )
     }
     const renderDeleteAllSelected = () => {
-        const btnstyle = { float: "right", textAlign: "center", padding: "5px", marginTop: "5px", marginBottom: "20px" }
+        const btnstyle = { float: "right", padding: "5px", marginTop: "5px" }
         return (
 
             <button style={btnstyle}
